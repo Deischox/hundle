@@ -38,7 +38,7 @@ export default function Home({ data }) {
       console.log(data[0])
       setDogImage(data[0]["dogimagelink"])
       setDogLink(data[0]["doglink"])
-      setWord(data[0]['dogname'])
+      setWord(data[0]['dogname'].toUpperCase())
     }
   }, [data])
 

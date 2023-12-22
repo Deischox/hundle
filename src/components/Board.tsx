@@ -157,10 +157,10 @@ export default function Board({ }) {
             <div className={cardClassFlip}>
                 <div className={cardClass}>
                     <div className="flip-card-front flex justify-around items-center flex-col">
-                        <img src={dogImage} alt="Avatar" style={{ height: 300 }} />
+                        <img src={dogImage} alt="Avatar" className="w-[90%]" />
                         {/* <a target="_blank" href={dogLink} className='bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center'>Jetzt adoptieren</a> */}
                     </div>
-                    <div className="flip-card-back">
+                    <div className="flip-card-back flex items-center">
 
                         <Grid />
                     </div>

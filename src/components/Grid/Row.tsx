@@ -16,9 +16,9 @@ const Row: NextPage<Props> = ({ id }) => {
             nums.push(i)
         }
     }
-    return <>
+    return (<>
         {nums.map((item, index) => (<Tile RowId={id} key={index} id={index} />))}
-    </>
+    </>)
 }
 
 export default Row

@@ -45,7 +45,7 @@ export default function Home({ data }) {
   function pressEnter() {
     if (guess.length < word.length) return
     // if (!dictonary.includes(guess.toLowerCase())) return alert("Word not found in dictonary")
-    if (guess == word) alert("You won!!")
+    // if (guess == word) alert("You won!!")
     setCompletedRows([...completedRows, currentRow])
     setCurrentRow(currentRow + 1)
     checkLettersInWord()

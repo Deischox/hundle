@@ -67,3 +67,61 @@ body {
   color: white;
   transform: rotateY(180deg);
 }
+
+.flip {
+  animation: flip 500ms ease forwards;
+}
+
+@keyframes flip {
+  0% {
+    transform: scaleY(1);
+    background-color: white;
+    color: black;
+  }
+
+  50% {
+    transform: scaleY(0);
+    background-color: white;
+    color: black;
+  }
+
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+.jump {
+  animation: jump 500ms ease forwards;
+}
+
+@keyframes jump {
+  0% {
+    transform: translate(0px, 0px);
+  }
+
+  50% {
+    transform: translate(0px, -20px);
+  }
+
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+.puls {
+  animation: puls 100ms ease forwards;
+}
+
+@keyframes puls {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

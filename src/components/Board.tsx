@@ -9,7 +9,7 @@ import { neon } from '@neondatabase/serverless';
 import { WorldeContext } from './WordleContext';
 
 export default function Board({ }) {
-    const { dogImage, word, dogLink } = useContext(WorldeContext) || {};
+    const { dogImage, word, dogLink, guess, completedRows } = useContext(WorldeContext) || {};
     const [cardClass, setCardClass] = useState("flip-card-inner")
     const [cardClassFlip, setCardClassFlip] = useState("flip-card w-[80%]")
     const [front, setFront] = useState(false)
@@ -27,6 +27,16 @@ export default function Board({ }) {
         }
         setFront(!front)
     }
+
+    useEffect(() => {
+        if (completedRows && completedRows.length === 6) {
+            setTimeout(function () {
+                if (front) {
+                    flipCard()
+                }
+            }, 1000);
+        }
+    }, [completedRows])
 
     function closePopUp() {
         setOpen(false)
@@ -157,7 +167,12 @@ export default function Board({ }) {
                 <div className={cardClass}>
                     <div className="flip-card-front flex justify-around items-center flex-col">
                         <img src={dogImage} alt="Avatar" className="w-[90%]" />
-                        {/* <a target="_blank" href={dogLink} className='bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center'>Jetzt adoptieren</a> */}
+                        {completedRows?.length === 6 ?
+                            <a target="_blank" href={dogLink} className='bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center'>Jetzt {word} adoptieren</a>
+                            :
+                            ""
+                        }
+
                     </div>
                     <div className="flip-card-back flex items-center">
 

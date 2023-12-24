@@ -78,7 +78,7 @@ export default function Board({ }) {
         <div className="flex justify-between px-5">
             <div className="items-center flex">
 
-                <a target="_blank" href='https://hunderettung-europa.de/hund-adoptieren'>
+                <a target="_blank" rel="noopener noreferrer" title="learn more about the dogs" href='https://hunderettung-europa.de/hund-adoptieren'>
                     <FaPaw className="text-3xl" />
                 </a>
 
@@ -152,7 +152,6 @@ export default function Board({ }) {
 
         </div>
         <div className="flex justify-center">
-
             {/* TODO Allign Grid and put button right  */}
             <div className={cardClassFlip}>
                 <div className={cardClass}>

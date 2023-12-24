@@ -13,6 +13,7 @@ export async function getServerSideProps() {
     const response = await sql`SELECT * FROM dog ORDER BY RANDOM() LIMIT 1`;
     return { props: { data: response } };
   }
+  return { props: { data: {} } };
 }
 
 

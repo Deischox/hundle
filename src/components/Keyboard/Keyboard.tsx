@@ -17,7 +17,7 @@ const Keyboard: NextPage<Props> = ({ }) => {
     //TODO convert Set1 and Set2 into one function
 
     function Set1() {
-
+        if (!letters) return
         return (
             <div
                 style={{ display: "flex", flexDirection: "row", justifyContent: "center", margin: "3" }}>
@@ -29,6 +29,7 @@ const Keyboard: NextPage<Props> = ({ }) => {
     }
 
     function Set2() {
+        if (!letters) return
         return (
             <div
                 style={{ display: "flex", flexDirection: "row", justifyContent: "center", margin: "3" }}>
@@ -40,6 +41,7 @@ const Keyboard: NextPage<Props> = ({ }) => {
     }
 
     function Set3() {
+        if (!letters) return
         return (
             <div
                 style={{ display: "flex", flexDirection: "row", justifyContent: "center", margin: "3" }}>

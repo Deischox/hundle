@@ -16,13 +16,13 @@ export async function getServerSideProps() {
   if (process.env.DATABASE_URL) {
     const sql = neon(process.env.DATABASE_URL);
     const response = await sql`SELECT * FROM dog ORDER BY RANDOM() LIMIT 1`;
-    return { props: { data: response[0] || {} as DogData } };
+    return { props: { data: response[0] } };
   }
-  return { props: { data: {} as DogData } };
+  return { props: { data: {} } };
 }
 
 
-export default function Home({ data }: { data: DogData }) {
+export default function Home({ data }) {
   const [word, setWord] = useState("")
   const [dogLink, setDogLink] = useState("")
   const [guess, setGuess] = useState("")

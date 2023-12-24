@@ -16,13 +16,14 @@ export async function getServerSideProps() {
   if (process.env.DATABASE_URL) {
     const sql = neon(process.env.DATABASE_URL);
     const response = await sql`SELECT * FROM dog ORDER BY RANDOM() LIMIT 1`;
-    return { props: { data: response[0] } };
+    console.log(response[0])
+    return { props: { data: response[0] || {} as DogData } };
   }
-  return { props: { data: {} } };
+  return { props: { data: {} as DogData } };
 }
 
 
-export default function Home({ data }) {
+export default function Home({ data }: { data: DogData }) {
   const [word, setWord] = useState("")
   const [dogLink, setDogLink] = useState("")
   const [guess, setGuess] = useState("")
@@ -40,8 +41,8 @@ export default function Home({ data }) {
   }
 
   useEffect(() => {
-    if (data) {
-      console.log(data)
+    if (data['dogname']) {
+
       setDogImage(data["dogimagelink"])
       setDogLink(data["doglink"])
       setWord(data['dogname'].toUpperCase())

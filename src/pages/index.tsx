@@ -32,6 +32,8 @@ export default function Home({ data }: { data: DogData }) {
   const [completedRows, setCompletedRows] = useState<number[]>([])
   const [currentRow, setCurrentRow] = useState(0)
   const [letters, setLetters] = useState<{ [letter: string]: LettersState }>({});
+  const [gameOver, setGameOver] = useState(false)
+  const [won, setWon] = useState(false)
 
 
 
@@ -42,7 +44,6 @@ export default function Home({ data }: { data: DogData }) {
 
   useEffect(() => {
     if (data['dogname']) {
-
       setDogImage(data["dogimagelink"])
       setDogLink(data["doglink"])
       setWord(data['dogname'].toUpperCase())
@@ -54,10 +55,17 @@ export default function Home({ data }: { data: DogData }) {
     // if (!dictonary.includes(guess.toLowerCase())) return alert("Word not found in dictonary")
     // if (guess == word) alert("You won!!")
     setCompletedRows([...completedRows, currentRow])
-    setCurrentRow(currentRow + 1)
+
     checkLettersInWord()
     createPatternForLastRow()
     setGuess("")
+
+    if (currentRow < 5) {
+      setCurrentRow(currentRow + 1)
+    } else {
+      if (currentRow == 5) setCurrentRow(6)
+      setGameOver(true)
+    }
   }
 
   function addToDictionary(key: string, value: LettersState) {
@@ -105,7 +113,11 @@ export default function Home({ data }: { data: DogData }) {
       else if (half_correct.includes(i)) final += "Y"
       else final += "G"
     }
-    console.log(final)
+
+    if (RegExp(/^[cC]+$/).test(final)) {
+      setGameOver(true)
+      setWon(true)
+    }
     setPatterns([...patterns, final])
   }
 
@@ -128,7 +140,9 @@ export default function Home({ data }: { data: DogData }) {
         guess,
         dogImage,
         backspace,
-        dogLink
+        dogLink,
+        gameOver,
+        won
       }}>
         <Board />
       </WorldeContext.Provider>

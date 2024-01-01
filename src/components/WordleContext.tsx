@@ -4,6 +4,8 @@ import { LettersState } from "./letterState";
 // State that can be used in multiple windows
 interface WorldeContextType {
     guess: string;
+    gameOver: boolean;
+    won: boolean;
     word: string;
     patterns: string[];
     currentRow: number;

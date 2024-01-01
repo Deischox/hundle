@@ -38,7 +38,7 @@ export default function Home({ data }: { data: DogData }) {
 
 
   function guessTheWord(char: string) {
-    if (char.length === word.length) return
+    if (char.length === word.length && gameOver) return
     setGuess(guess.concat(char))
   }
 

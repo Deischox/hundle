@@ -68,25 +68,18 @@ export default function Home({ data }: { data: DogData }) {
     }
   }
 
-  function addToDictionary(key: string, value: LettersState) {
-    if (!letters.hasOwnProperty(key) || letters[key] !== LettersState.CORRECT) {
-      setLetters(prevDictionary => ({
-        ...prevDictionary,
-        [key]: value,
-      }));
-    }
-  };
-
   function checkLettersInWord() {
+    var new_letters: { [key: string]: LettersState } = { ...letters };
     for (var i = 0; i < word.length; i++) {
       if (guess[i] == word[i]) {
-        addToDictionary(guess[i], LettersState.CORRECT)
+        new_letters[guess[i]] = LettersState.CORRECT
       } else if (word.includes(guess[i])) {
-        addToDictionary(guess[i], LettersState.IN)
+        if (!new_letters.hasOwnProperty(guess[i])) new_letters[guess[i]] = LettersState.IN
       } else {
-        addToDictionary(guess[i], LettersState.OUT)
+        new_letters[guess[i]] = LettersState.OUT
       }
     }
+    setLetters(new_letters);
   }
 
   function createPatternForLastRow() {
